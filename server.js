@@ -6,16 +6,20 @@
 import path from 'path'
 
 import falcorExpress from 'falcor-express'
+import Router from 'falcor-router'
 import express from 'express'
 
-import GreetingsRouter from './js/routers/greetingsRouter'
+import greetingsRoute from './js/routers/greetingsRouter.js'
+import charactersRoute from './js/routers/charactersRouter.js'
 
 const app = express()
 const APP_PORT = 3000
 
 app.use('/model.json', falcorExpress.dataSourceRoute(function (req, res) {
-  // create a Virtual JSON resource with single key ("greeting")
-  return new GreetingsRouter('Guillaume')
+  return new Router([
+      greetingsRoute,
+      charactersRoute
+  ])
 }))
 
 // serve static files from current directory

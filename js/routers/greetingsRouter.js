@@ -4,22 +4,11 @@
 
 'use strict'
 
-import Router from 'falcor-router'
-
-export class GreetingsRouter extends
-    // create base class in-line
-    Router.createClass([
-        {
-            route: "greeting",
-            get: function() {
-              return { path:["greeting"], value: `Hello ${this.user}` }
-            }
-        }
-    ]) {
-    constructor(user) {
-        super()
-        this.user = user
+export default {
+    // match a request for the key "greeting"
+    route: "greeting",
+    // respond with a PathValue with the value of "Hello World."
+    get: function() {
+      return {path:["greeting"], value: "Hello World"};
     }
 }
-
-export { GreetingsRouter as default }
